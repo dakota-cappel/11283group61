@@ -1,4 +1,4 @@
-# 11283group61 HAHA IM EDITING THIS
+# 11283group61 Frick Covid Bro
 CEN3031 Group Project Directory
 
 Member1: Dakota Cappel (Scrum Master)
