@@ -28,27 +28,29 @@ void draw() {
   rect(0+mapVal, 620, 1280, 100);
   rect(1600+mapVal, 620, 500, 100);
   c1.playerdraw(false);
-  
+  c1.move();
 }
 
 void keyPressed() {
   if (key == 'w') {
-    c1.move(true, false, false, false);
+    c1.U = true;
   } else if (key == 's') {     
-    c1.move(false, true, false, false);
+    c1.D = true;
   } else if (key == 'd') {
-    if ((c1.playerXLeft +c1.playerXRight) / 2 >= (width / 2)) {
-      mapVal-= 10;
-    } else {
-      c1.move(false, false, false, true);
-    }
+    c1.R = true;
   } else if (key == 'a') {
-    if (c1.playerXLeft <= 0) {
-      if (mapVal != 0) {
-        mapVal += 10;
-      }
-    } else {
-      c1.move(false, false, true, false);
-    }  
+    c1.L = true;
+  }
+}
+
+void keyReleased() {
+  if (key == 'w') {
+    c1.U = false;
+  } else if (key == 's') {     
+    c1.D = false;
+  } else if (key == 'd') {
+    c1.R = false;
+  } else if (key == 'a') {
+    c1.L = false;
   }
 }

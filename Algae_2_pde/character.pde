@@ -3,7 +3,7 @@ public class character {
   float playerXLeft, playerXRight;
   float playerYTop, playerYBottom;
   float xspd, yspd;
-  boolean L, R, U, D;
+  boolean L, R, U, D = false;
   
   character(){ //Basic class constructor, initializes character position on screen.
     playerXLeft = 100;
@@ -13,22 +13,36 @@ public class character {
   }
   
   //Moves the character based on an input of booleans from the KeyPressed function. Adding 'KeyReleased' later
-  void move(boolean up, boolean down, boolean left, boolean right) {
-    if (up) {
-      playerYTop-=10;
-      playerYBottom-=10;
-    }
-    if (down) {
-      playerYTop+=10;    
-      playerYBottom+=10;
-    }
-    if (left) {
-      playerXLeft-=10;
-      playerXRight-=10;
-    }
-    if (right) {
-      playerXLeft+=10;
-      playerXRight+=10;
+  void move() {
+    if (U && D || L && R) {
+      //Do nothing! :D
+    } else {
+      if (U) {
+        playerYTop -= 5;
+        playerYBottom -= 5;
+      }
+      if (D) {
+        playerYTop += 5;    
+        playerYBottom += 5;
+      }
+      if (L) {
+        if (c1.playerXLeft <= 0) {
+          if (mapVal != 0) {
+            mapVal += 5;
+          }
+        } else {
+        playerXLeft-=5;
+        playerXRight-=5;
+        }
+      }
+      if (R) {
+        if ((c1.playerXLeft +c1.playerXRight) / 2 >= (width / 2)) {
+          mapVal-= 5;
+        } else {
+          playerXLeft += 5;
+          playerXRight += 5;
+        }
+      }
     }
   }
   
