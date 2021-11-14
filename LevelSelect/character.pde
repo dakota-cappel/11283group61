@@ -19,11 +19,11 @@ public class character {
     if (U && D || L && R) {
       //Do nothing! :D
     } else {
-      if (U) {
+      if (U && playerYTop >= 2) {
         playerYTop -= 5; //Decreased speed from 10 to 5, worked a little fast when put into the draw function.
         playerYBottom -= 5;
       }
-      if (D) {
+      if (D && playerYBottom <= floorVal) {
         playerYTop += 5;    
         playerYBottom += 5;
       }
@@ -45,7 +45,7 @@ public class character {
         }
       }
       if (R) {
-        if ((c1.playerXLeft +c1.playerXRight) / 2 >= (width / 2)) {
+        if ((c1.playerXLeft +c1.playerXRight) / 2 >= (width / 2) && mapVal >= -stageLength) {
           mapVal-= 5;
           if(onLevel1){
             for (int i = 0; i < lvl1occ; i++) {
@@ -55,8 +55,10 @@ public class character {
             }
           }
         } else {
-          playerXLeft += 5;
-          playerXRight += 5;
+          if (playerXRight <= width) {
+            playerXLeft += 5;
+            playerXRight += 5;
+          }
         }
       }
     }
@@ -86,5 +88,9 @@ public class character {
     playerXRight = 150;
     playerYTop = 520;
     playerYBottom = 620;
+    U = false;
+    D = false;
+    R = false;
+    L = false;
   }
 }

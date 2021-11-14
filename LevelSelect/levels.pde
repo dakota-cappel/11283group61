@@ -13,7 +13,8 @@ void lvlReset() {
 
 void displayLevel1() {
   // println("Map Val: " + mapVal);
-  stageLength = 10000;
+  stageLength = 7000;
+  floorVal = 650;
   makePlatforms1();
   image(bgrnd, backVal, 0);
   
@@ -24,6 +25,7 @@ void displayLevel1() {
   fill(0, 255, 255);
   for (int i = 0; i < L1.length; i++) {
     L1[i].drawPlatform();
+    L1[i].checkCollisions();
   }
   
   for (int i = 0; i < stageLength; i += 1280) {
@@ -90,7 +92,7 @@ void displayLevel3() {
 
 void makePlatforms1() {
   L1[0] = new platform(400, 400, 600, 30);
-  L1[1] = new platform(1100, 400, 100, 300);
+  L1[1] = new platform(1150, 400, 100, 300);
   L1[2] = new platform(1550, 5, 800, 200);
   L1[3] = new platform(2600, 400, 100, 200);
   L1[4] = new platform(2600, 0, 100, 200);

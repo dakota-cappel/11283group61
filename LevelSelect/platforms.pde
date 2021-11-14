@@ -13,11 +13,21 @@ public class platform{
   }
   
   void drawPlatform() {
-    rect(left + mapVal, top, wide, high);
+    left += mapVal;
+    right = left + wide;
+    rect(left, top, wide, high);
   }
   
-  boolean checkCollisions() {
-  
-    return true;
+  void checkCollisions() {
+    if ((c1.playerYTop <= bottom && c1.playerYBottom >= bottom) && c1.playerXLeft <= right && c1.playerXRight >= left) {
+      c1.U = false;
+    } else if ((c1.playerYBottom >= top && c1.playerYTop <= top) && c1.playerXLeft <= right && c1.playerXRight >= left) {
+      c1.D = false;
+    } 
+    if ((c1.playerXRight >= left && c1.playerXLeft <= left) && (c1.playerYTop <= bottom && c1.playerYBottom >= top)) {
+      c1.R = false;
+    } else if ((c1.playerXLeft <= right && c1.playerXRight >= right) && (c1.playerYTop <= bottom && c1.playerYBottom >= top)) {
+      c1.L = false;
+    }
   }
 };

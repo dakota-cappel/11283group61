@@ -39,8 +39,6 @@ void setup() {
   
   mapVal = 0;
   backVal = 0;
-  floorVal = 620;
-  stageLength = 10000;
   bgrnd = loadImage("stage1.png");
   scuba = loadImage("scuba/Scuba.png");
   ground = loadImage("ground.png");
