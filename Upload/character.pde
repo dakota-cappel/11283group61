@@ -2,6 +2,7 @@ public class character {
   //Creates the character's position, speed, and directional variables.
   float playerXLeft, playerXRight;
   float playerYTop, playerYBottom;
+  float xspd, yspd;
   boolean L, R, U, D;
   boolean loaded;
   int direction;
@@ -32,11 +33,12 @@ public class character {
           if (mapVal != 0) {
             mapVal += 5;
             if(onLevel1){
-              for (int i = 0; i < lvl1occ; i++) {
-                lvl1entities[i].xLeft += 5;
-                //ADDED THE LINE BELOW TO FIX BUG
-                lvl1entities[i].xRight += 5;
-              } 
+                for (int i = 0; i < lvl1occ; i++) {
+                  lvl1entities[i].xLeft += 5;
+                  
+                  //ADDED THE LINE BELOW TO FIX BUG
+                  lvl1entities[i].xRight += 5;
+                } 
             }
           }
         } else {
@@ -48,11 +50,12 @@ public class character {
         if ((c1.playerXLeft +c1.playerXRight) / 2 >= (width / 2)) {
           mapVal-= 5;
           if(onLevel1){
-            for (int i = 0; i < lvl1occ; i++) {
-              lvl1entities[i].xLeft -= 5;
-              //ADDED THE LINE BELOW TO FIX BUG
-              lvl1entities[i].xRight -= 5;
-            }
+                for (int i = 0; i < lvl1occ; i++) {
+                  lvl1entities[i].xLeft -= 5;
+                  
+                  //ADDED THE LINE BELOW TO FIX BUG
+                  lvl1entities[i].xRight -= 5;
+                } 
           }
         } else {
           playerXLeft += 5;
@@ -75,16 +78,9 @@ public class character {
     image(scuba,(c1.direction)*-playerXRight-50,playerYTop);
     }
     else{
-      scale(-1.0,1.0);
-      image(scuba,-playerXRight,playerYTop);
+          scale(-1.0,1.0);
+          image(scuba,-playerXRight,playerYTop);
     }
     popMatrix();
-  }
-  
-  void Reset() {
-    playerXLeft = 100;
-    playerXRight = 150;
-    playerYTop = 520;
-    playerYBottom = 620;
   }
 }

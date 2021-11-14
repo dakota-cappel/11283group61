@@ -1,6 +1,7 @@
-float playerXLeft, playerXRight; //<>//
+float playerXLeft, playerXRight; //<>// //<>//
 float playerYTop, playerYBottom;
 PImage bgrnd;
+PImage scuba;
 entity[] entities = new entity[1000];
 //Item[] Inventory = new Inventory[9];
 float mapVal;
@@ -55,17 +56,21 @@ class entity {
   }
 }
 
-void checkEntityCollision(entity ent) {
+boolean checkEntityCollision(entity ent) {
   //Checking collision of player and algae1
   if (((playerXRight>=ent.xLeft && playerXRight <= ent.xRight) || (playerXLeft >= ent.xLeft && playerXLeft <= ent.xRight)) && (((playerYBottom>=ent.yTop) && (playerYBottom<=ent.yBottom)) || ((playerYTop>=ent.yTop) && (playerYTop <= ent.yBottom)))) {
-    println("COLLIKSION AOHHHHHHHHHHHH");
+    textSize(20);
+    fill(0,255,255);
+    text("COLLISION AGHHHH, plz stop", 420, 40);
+    return true;
   }
+  return false;
 }
 
 void setup() {
   //Initializing the player
   playerXLeft = 100;
-  playerXRight = 160;
+  playerXRight = 150;
   playerYTop = 520;
   playerYBottom = 620;
 
@@ -74,6 +79,9 @@ void setup() {
 
   //Background loading
   bgrnd = loadImage("Background.png");
+  
+  //Scuba loadin
+  scuba = loadImage("Scuba.png");
 
   //Initializing algae left
   entity alg1 = new entity("algae", 275, 370, 100, 100, 2, 3);
@@ -104,11 +112,12 @@ void draw() {
   rect(0+mapVal, 620, 1280, 100);
   rect(1600+mapVal, 620, 500, 100);
 
+  player(false);
   for (int i = 0; i < occ; i++) {
     entities[i].drawAlg();  
-    checkEntityCollision(entities[i]);
+    if(checkEntityCollision(entities[i]))
+      player(true);
   }
-  player();
 }
 
 void keyPressed() {
@@ -119,34 +128,37 @@ void keyPressed() {
     playerYTop+=10;    
     playerYBottom+=10;
   } else if (key == 'd') {
-    if (playerXRight >= mapVal) {
-      mapVal -= 10;
-      for (int i = 0; i < occ; i++) {
-        entities[i].xLeft -= 10;
-        entities[i].xRight -= 10;
-      }
-    } else {
-      playerXRight += 10;
-      playerXLeft += 10;
+    mapVal-=10;
+    for (int i = 0; i < occ; i++) {
+      entities[i].xLeft -= 10;
+      
+      //ADDED THE LINE BELOW TO FIX BUG
+      entities[i].xRight -= 10;
     }
   } else if (key == 'a') {
-    if (playerXLeft < mapVal) {
-      if (mapVal<0) {
+    if (mapVal<0) {
       mapVal+=10;
 
-        for (int i = 0; i < occ; i++) {
-          entities[i].xLeft += 10;
-          entities[i].xRight += 10;
-        }
+      for (int i = 0; i < occ; i++) {
+        entities[i].xLeft += 10;
+        
+        //ADDED THE LINE BELOW TO FIX BUG
+        entities[i].xRight += 10;
       }
-    } else {
-      playerXRight -= 10;
-      playerXLeft -= 10;awd
     }
   }
 }
 
-void player() {
-  fill(255, 0, 0);
-  rect(100, playerYTop, 60, 90);
+void player(Boolean rg) {
+  //scuba.resize(66,99);
+  if(rg)
+  fill(255,0,0);
+  else
+  fill(0,255,0);
+  rect(100,playerYTop, 50,90);
+  pushMatrix();
+  scale(-1.0,1.0);
+  image(scuba,-100-50,playerYTop);
+  popMatrix();
+  
 }

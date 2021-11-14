@@ -17,6 +17,7 @@ class Item{
       
       //ADD IN DIRECTION VARIABLE
       //if(Facing left){
+ //<>//
       //else if (facing right){
         
       //}
