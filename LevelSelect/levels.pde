@@ -1,13 +1,26 @@
+PShape[] L1 =  new PShape[10];
+PShape[] L2 =  new PShape[15];
+PShape[] L3 =  new PShape[20];
+
+void lvlReset() {
+  backVal = 0;
+  mapVal = 0;
+}
+
 void displayLevel1() {
   // println("Map Val: " + mapVal);
-    
-  image(bgrnd, mapVal, -300);
+  image(bgrnd, backVal, 0);
 
+  for (int i = 0; i < stageLength; i += 1280) {
+    image(ground, i+mapVal, 620);
+  }
+  noStroke();
+  noFill();
+  rect(0, 620, 1280, 100);
   stroke(0);
   fill(0, 255, 255);
   rect(400+mapVal, 400, 600, 30);
-  rect(0+mapVal, 620, 1280, 100);
-  rect(1600+mapVal, 620, 500, 100);
+  
   c1.playerdraw(false);
   c1.loaded = true;
   c1.move();
@@ -29,6 +42,7 @@ void displayLevel1() {
     lvl1entities[i].checkEntityCollision("Player");
   }
 }
+
 void displayLevel2() {
   background(66,135,245);
   stroke(0);

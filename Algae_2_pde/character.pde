@@ -2,16 +2,14 @@ public class character {
   //Creates the character's position, speed, and directional variables.
   float playerXLeft, playerXRight;
   float playerYTop, playerYBottom;
-  boolean L, R, U, D;
-  boolean loaded;
-  int direction;
+  float xspd, yspd;
+  boolean L, R, U, D = false;
   
   character(){ //Basic class constructor, initializes character position on screen.
     playerXLeft = 100;
     playerXRight = 150;
     playerYTop = 520;
     playerYBottom = 620;
-    direction = 0;
   }
   
   //Moves the character based on an input of booleans from the KeyPressed function. Adding 'KeyReleased' later
@@ -20,7 +18,7 @@ public class character {
       //Do nothing! :D
     } else {
       if (U) {
-        playerYTop -= 5; //Decreased speed from 10 to 5, worked a little fast when put into the draw function.
+        playerYTop -= 5;
         playerYBottom -= 5;
       }
       if (D) {
@@ -31,13 +29,6 @@ public class character {
         if (c1.playerXLeft <= 0) {
           if (mapVal != 0) {
             mapVal += 5;
-            if(onLevel1){
-              for (int i = 0; i < lvl1occ; i++) {
-                lvl1entities[i].xLeft += 5;
-                //ADDED THE LINE BELOW TO FIX BUG
-                lvl1entities[i].xRight += 5;
-              } 
-            }
           }
         } else {
         playerXLeft-=5;
@@ -47,13 +38,6 @@ public class character {
       if (R) {
         if ((c1.playerXLeft +c1.playerXRight) / 2 >= (width / 2)) {
           mapVal-= 5;
-          if(onLevel1){
-            for (int i = 0; i < lvl1occ; i++) {
-              lvl1entities[i].xLeft -= 5;
-              //ADDED THE LINE BELOW TO FIX BUG
-              lvl1entities[i].xRight -= 5;
-            }
-          }
         } else {
           playerXLeft += 5;
           playerXRight += 5;
@@ -70,21 +54,8 @@ public class character {
       fill(0,255,0);
     }
     pushMatrix();
-    if(c1.direction == -1){
-    scale((c1.direction)*-1.0,1.0);
-    image(scuba,(c1.direction)*-playerXRight-50,playerYTop);
-    }
-    else{
-      scale(-1.0,1.0);
-      image(scuba,-playerXRight,playerYTop);
-    }
+    scale(-1.0,1.0);
+    image(scuba,-playerXRight,playerYTop);
     popMatrix();
-  }
-  
-  void Reset() {
-    playerXLeft = 100;
-    playerXRight = 150;
-    playerYTop = 520;
-    playerYBottom = 620;
   }
 }
