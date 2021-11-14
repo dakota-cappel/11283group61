@@ -10,9 +10,13 @@ character c1 = new character();
 PImage bgrnd;
 PImage scuba;
 PImage logo;
+PImage ground;
 PImage[] menu = new PImage[9];
 PImage[] idle = new PImage[10];
 float mapVal;
+float backVal;
+float floorVal;
+float stageLength;
 int currentFrame = 0;
 int numFrames = 9;
 PImage levelMap;
@@ -24,6 +28,12 @@ boolean onLevel1;
 boolean onLevel2;
 boolean onLevel3;
 
+entity[] lvl1entities = new entity[1000];
+int lvl1occ = 0;
+Item[] Inventory = new Item[3];
+int invCount = 0;
+int equipped;
+
 void setup() {
   size(1280, 720);
   float startX = width/11 - 50;
@@ -32,8 +42,12 @@ void setup() {
   float exitY = height/4 + 100;
   
   mapVal = 0;
-  bgrnd = loadImage("Background.png");
-  scuba = loadImage("Scuba.png");
+  backVal = 0;
+  floorVal = 620;
+  stageLength = 10000;
+  bgrnd = loadImage("stage1.png");
+  scuba = loadImage("scuba/Scuba.png");
+  ground = loadImage("ground.png");
   
   onMenu = true;
   onLevelSelect = false;
@@ -46,10 +60,10 @@ void setup() {
   textFont(title);
   
   for(int i = 1; i <= 9; i++){
-    menu[i-1] = loadImage("MainMenuF" + i + ".png");
+    menu[i-1] = loadImage("Main Menu/MainMenuF" + i + ".png");
   }
   for(int i = 1; i <= 10; i++){
-    idle[i-1] = loadImage("Idle" + i + ".png");
+    idle[i-1] = loadImage("joshidle/Idle" + i + ".png");
   }
 
 
@@ -62,6 +76,16 @@ void setup() {
   level1 = new Button("1", 750, 110, 100, 50);
   level2 = new Button("2", 900, 400, 100, 50);
   level3 = new Button("3", 1000, 630, 100, 50);
+  
+  entity alg1 = new entity("Algae", 275, 370, 100, 100, 2, 3);
+  lvl1entities[lvl1occ] = alg1;
+  lvl1occ+=1;
+  entity net = new entity("Net", 600, 590, 40, 15, 1, 1);
+  lvl1entities[lvl1occ] = net;
+  lvl1occ+=1;
+  entity alg2 = new entity("Algae", 700, 300, 100, 100, -1, 3);
+  lvl1entities[lvl1occ] = alg2;
+  lvl1occ+=1;
 }
 
 void draw() {

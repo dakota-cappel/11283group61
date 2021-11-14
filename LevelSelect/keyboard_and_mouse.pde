@@ -1,28 +1,38 @@
 void keyPressed() {
   if (c1.loaded) {
     if (key == 'w') {
-    c1.U = true;
-  } else if (key == 's') {     
-    c1.D = true;
-  } else if (key == 'd') {
-    c1.R = true;
-  } else if (key == 'a') {
-    c1.L = true;
-  }
+      c1.U = true;
+    } else if (key == 's') {     
+      c1.D = true;
+    } else if (key == 'd') {
+      c1.R = true;
+      c1.direction = 1;
+    } else if (key == 'a') {
+      c1.L = true;
+      c1.direction = -1;
+    } else if (key == '1') {
+      if(equipped==1)
+        equipped = 0;
+      else
+        equipped = 1;
+    } else if (key == 'e') {
+      if(equipped!=0)
+        Inventory[equipped-1].use(Inventory[equipped-1].type);
+    }
   }
 }
 
 void keyReleased() {
   if (c1.loaded) {
     if (key == 'w') {
-    c1.U = false;
-  } else if (key == 's') {     
-    c1.D = false;
-  } else if (key == 'd') {
-    c1.R = false;
-  } else if (key == 'a') {
-    c1.L = false;
-  }
+      c1.U = false;
+    } else if (key == 's') {     
+      c1.D = false;
+    } else if (key == 'd') {
+      c1.R = false;
+    } else if (key == 'a') {
+      c1.L = false;
+    }
   }
 }
 
@@ -74,6 +84,8 @@ void mousePressed() {
       back.drawClickedButton();
       onLevel1 = false;
       onLevelSelect = true;
+      c1.Reset();
+      lvlReset();
     }
     
   }
@@ -82,6 +94,8 @@ void mousePressed() {
       back.drawClickedButton();
       onLevel2 = false;
       onLevelSelect = true;
+      c1.Reset();
+      lvlReset();
     }
     
   }
@@ -90,6 +104,8 @@ void mousePressed() {
       back.drawClickedButton();
       onLevel3 = false;
       onLevelSelect = true;
+      c1.Reset();
+      lvlReset();
     }
     
   }
