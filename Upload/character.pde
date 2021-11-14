@@ -5,13 +5,14 @@ public class character {
   float xspd, yspd;
   boolean L, R, U, D;
   boolean loaded;
-  
+  int direction;
   
   character(){ //Basic class constructor, initializes character position on screen.
     playerXLeft = 100;
     playerXRight = 150;
     playerYTop = 520;
     playerYBottom = 620;
+    direction = 0;
   }
   
   //Moves the character based on an input of booleans from the KeyPressed function. Adding 'KeyReleased' later
@@ -72,8 +73,14 @@ public class character {
       fill(0,255,0);
     }
     pushMatrix();
-    scale(-1.0,1.0);
-    image(scuba,-playerXRight,playerYTop);
+    if(c1.direction == -1){
+    scale((c1.direction)*-1.0,1.0);
+    image(scuba,(c1.direction)*-playerXRight-50,playerYTop);
+    }
+    else{
+          scale(-1.0,1.0);
+          image(scuba,-playerXRight,playerYTop);
+    }
     popMatrix();
   }
 }

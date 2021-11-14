@@ -92,8 +92,16 @@ class entity {
     }
   }
   else if (what == "Net"){
-    if(type == "Algae" && ((c1.playerXRight+40>=xLeft && c1.playerXRight+40 <= xRight) || (c1.playerXLeft+50 >= xLeft && c1.playerXLeft+50 <= xRight)) && (((c1.playerYBottom-42 >= yTop) && (c1.playerYBottom-42<=yBottom)) || ((c1.playerYTop+42>=yTop) && (c1.playerYTop+42 <=yBottom)))){
+    if(c1.direction == 1){
+      if(type == "Algae" && (((c1.playerXRight+40)>=xLeft && (c1.playerXRight+40) <= xRight) || ((c1.playerXLeft+90) >= xLeft && (c1.playerXLeft+90) <= xRight)) && (((c1.playerYBottom-42 >= yTop) && (c1.playerYBottom-42<=yBottom)) || ((c1.playerYTop+42>=yTop) && (c1.playerYTop+42 <=yBottom)))){
+        alive = false;
+      }
+    }
+    else
+    {
+      if(type == "Algae" && (((c1.playerXLeft-40)>=xLeft && (c1.playerXLeft-40) <= xRight) || ((c1.playerXLeft >= xLeft) && (c1.playerXLeft <= xRight))) && (((c1.playerYBottom-42 >= yTop) && (c1.playerYBottom-42<=yBottom)) || ((c1.playerYTop+42>=yTop) && (c1.playerYTop+42 <=yBottom)))){
       alive = false;
+      }
     }
     
   }

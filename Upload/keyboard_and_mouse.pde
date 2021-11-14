@@ -6,8 +6,10 @@ void keyPressed() {
     c1.D = true;
   } else if (key == 'd' || key == 'D') {
     c1.R = true;
+    c1.direction = 1;
   } else if (key == 'a' || key == 'A') {
     c1.L = true;
+    c1.direction = -1;
   }
     else if (key == '1') {
       if(equipped==1)
