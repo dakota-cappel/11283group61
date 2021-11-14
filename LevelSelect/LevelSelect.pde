@@ -13,10 +13,6 @@ PImage logo;
 PImage ground;
 PImage[] menu = new PImage[9];
 PImage[] idle = new PImage[10];
-float mapVal;
-float backVal;
-float floorVal;
-float stageLength;
 int currentFrame = 0;
 int numFrames = 9;
 PImage levelMap;
@@ -43,8 +39,6 @@ void setup() {
   
   mapVal = 0;
   backVal = 0;
-  floorVal = 620;
-  stageLength = 10000;
   bgrnd = loadImage("stage1.png");
   scuba = loadImage("scuba/Scuba.png");
   ground = loadImage("ground.png");

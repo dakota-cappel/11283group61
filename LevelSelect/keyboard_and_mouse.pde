@@ -17,8 +17,11 @@ void keyPressed() {
       else
         equipped = 1;
     } else if (key == 'e') {
-      if(equipped!=0)
-        Inventory[equipped-1].use(Inventory[equipped-1].type);
+      if(equipped != 0) {
+        if (Inventory[equipped-1] != null) {
+          Inventory[equipped-1].use(Inventory[equipped-1].type);
+        }
+      }
     }
   }
 }
