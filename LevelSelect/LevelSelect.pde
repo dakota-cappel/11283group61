@@ -13,10 +13,6 @@ PImage logo;
 PImage ground;
 PImage[] menu = new PImage[9];
 PImage[] idle = new PImage[10];
-float mapVal;
-float backVal;
-float floorVal;
-float stageLength;
 int currentFrame = 0;
 int numFrames = 9;
 PImage levelMap;
@@ -77,6 +73,7 @@ void setup() {
   level2 = new Button("2", 900, 400, 100, 50);
   level3 = new Button("3", 1000, 630, 100, 50);
   
+  //Declaring Level 1 Entities
   entity alg1 = new entity("Algae", 275, 370, 100, 100, 2, 3);
   lvl1entities[lvl1occ] = alg1;
   lvl1occ+=1;

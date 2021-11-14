@@ -1,23 +1,27 @@
 void keyPressed() {
   if (c1.loaded) {
-    if (key == 'w') {
+    if (key == 'w' || key == 'W') {
       c1.U = true;
-    } else if (key == 's') {     
+    } else if (key == 's' || key == 'S') {     
       c1.D = true;
-    } else if (key == 'd') {
+    } else if (key == 'd' || key == 'D') {
       c1.R = true;
       c1.direction = 1;
-    } else if (key == 'a') {
+    } else if (key == 'a' || key == 'A') {
       c1.L = true;
       c1.direction = -1;
-    } else if (key == '1') {
+    }
+    else if (key == '1') {
       if(equipped==1)
         equipped = 0;
       else
         equipped = 1;
     } else if (key == 'e') {
-      if(equipped!=0)
-        Inventory[equipped-1].use(Inventory[equipped-1].type);
+      if(equipped != 0) {
+        if (Inventory[equipped-1] != null) {
+          Inventory[equipped-1].use(Inventory[equipped-1].type);
+        }
+      }
     }
   }
 }

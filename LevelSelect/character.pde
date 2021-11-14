@@ -52,7 +52,7 @@ public class character {
               lvl1entities[i].xLeft -= 5;
               //ADDED THE LINE BELOW TO FIX BUG
               lvl1entities[i].xRight -= 5;
-            } 
+            }
           }
         } else {
           playerXLeft += 5;
