@@ -13,6 +13,8 @@ PImage logo;
 PImage ground;
 PImage[] menu = new PImage[9];
 PImage[] idle = new PImage[10];
+PImage[] charIdle = new PImage[8];
+PImage[] charIdleNet = new PImage[8];
 int currentFrame = 0;
 int numFrames = 9;
 PImage levelMap;
@@ -59,7 +61,12 @@ void setup() {
   for(int i = 1; i <= 10; i++){
     idle[i-1] = loadImage("joshidle/Idle" + i + ".png");
   }
-
+  for (int i = 0; i < charIdle.length; i++) {
+    charIdle[i] = loadImage("IDLE/idle-" + (i + 1) + ".png");
+  }
+  for (int i = 0; i < charIdle.length; i++) {
+    charIdleNet[i] = loadImage("IDLE_NET/idle_with_net-" + (i + 1) + ".png");
+  }
 
   levelMap = loadImage("LevelSelect.png");
   logo = loadImage("Logo.png");

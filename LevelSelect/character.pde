@@ -4,6 +4,8 @@ public class character {
   float playerYTop, playerYBottom;
   boolean L, R, U, D;
   boolean loaded;
+  boolean idling;
+  boolean equippethed;
   int direction;
   
   character(){ //Basic class constructor, initializes character position on screen.
@@ -62,6 +64,9 @@ public class character {
         }
       }
     }
+    if (!U && !D && !L && !R) {
+      idling = true;
+    } else { idling = false; }
   }
   
   void playerdraw(Boolean rg) { //Used for drawing the character sprite and the detection hitbox (in the shape of a rect)
@@ -73,12 +78,25 @@ public class character {
     }
     pushMatrix();
     if(c1.direction == -1){
-    scale((c1.direction)*-1.0,1.0);
-    image(scuba,(c1.direction)*-playerXRight-50,playerYTop);
-    }
-    else{
       scale(-1.0,1.0);
-      image(scuba,-playerXRight,playerYTop);
+      if (idling) {
+        if (equippethed) {
+          image(charIdleNet[(frameCount / 10) % 8],-playerXLeft - 85,playerYTop);
+          //image(idle[(frameCount/10)%10], 0, 0);
+        } else {image(charIdle[(frameCount / 10) % 8],-playerXLeft - 75,playerYTop);}
+      } else {
+        image(scuba,-playerXLeft - 50,playerYTop);
+      }
+    }
+    else {  
+      if (idling) {
+        if (equippethed) {
+          image(charIdleNet[(frameCount / 10) % 8],playerXLeft - 35,playerYTop);
+          //image(idle[(frameCount/10)%10], 0, 0);
+        } else {image(charIdle[(frameCount / 10) % 8],playerXLeft - 25,playerYTop);}
+      } else {
+        image(scuba,playerXLeft,playerYTop);
+      }
     }
     popMatrix();
   }
