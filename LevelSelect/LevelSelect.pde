@@ -15,6 +15,7 @@ PImage[] menu = new PImage[9];
 PImage[] idle = new PImage[10];
 PImage[] charIdle = new PImage[8];
 PImage[] charIdleNet = new PImage[8];
+PImage[] algaeFrames = new PImage[6];
 int currentFrame = 0;
 int numFrames = 9;
 PImage levelMap;
@@ -31,6 +32,8 @@ int lvl1occ = 0;
 Item[] Inventory = new Item[3];
 int invCount = 0;
 int equipped;
+float c1Ang;
+float c1Rad;
 
 void setup() {
   size(1280, 720);
@@ -67,6 +70,9 @@ void setup() {
   for (int i = 0; i < charIdle.length; i++) {
     charIdleNet[i] = loadImage("IDLE_NET/idle_with_net-" + (i + 1) + ".png");
   }
+  for (int i = 1; i < 7; i++) {
+    algaeFrames[i-1] = loadImage("Algae/Alg" + i + ".png");
+  }
 
   levelMap = loadImage("LevelSelect.png");
   logo = loadImage("Logo.png");
@@ -79,15 +85,121 @@ void setup() {
   level3 = new Button("3", 1000, 630, 100, 50);
   
   //Declaring Level 1 Entities
-  entity alg1 = new entity("Algae", 275, 370, 100, 100, 2, 3);
+  entity alg1 = new entity("Algae", 275, 370, 100, 100, 2, 3, 100,0,0);
   lvl1entities[lvl1occ] = alg1;
   lvl1occ+=1;
-  entity net = new entity("Net", 600, 590, 40, 15, 1, 1);
+  entity net = new entity("Net", 600, 590, 40, 15, 1, 1, 0,0,0);
   lvl1entities[lvl1occ] = net;
   lvl1occ+=1;
-  entity alg2 = new entity("Algae", 700, 300, 100, 100, -1, 3);
+  entity alg2 = new entity("Algae", 700, 300, 100, 100, -1, 3, 300,0,0);
   lvl1entities[lvl1occ] = alg2;
   lvl1occ+=1;
+  entity alg3 = new entity("Algae", 1025, 300, 100, 100, 2, 3, 100,0,0);
+  lvl1entities[lvl1occ] = alg3;
+  lvl1occ+=1;
+  entity alg = new entity("Algae", 760, 125, 100, 100, 2, 3, 50,0,0);
+  lvl1entities[lvl1occ] = alg;
+  lvl1occ+=1;
+  alg = new entity("Algae", 1300, 250, 100, 100, 2, 3, 150,0,0);
+  lvl1entities[lvl1occ] = alg;
+  lvl1occ+=1;
+  alg = new entity("Algae", 2000, 255, 100, 100, 1, 3, 400,0,0);
+  lvl1entities[lvl1occ] = alg;
+  lvl1occ+=1;
+  alg = new entity("Algae", 2200, 500, 100, 100, -1, 3, 200,0,0);
+  lvl1entities[lvl1occ] = alg;
+  lvl1occ+=1;
+  alg = new entity("Algae", 1800, 500, 100, 100, 1, 3, 200,0,0);
+  lvl1entities[lvl1occ] = alg;
+  lvl1occ+=1;
+  alg = new entity("Algae", 1900, 425, 100, 100, 2, 3, 100,0,0);
+  lvl1entities[lvl1occ] = alg;
+  lvl1occ+=1;
+  alg = new entity("Algae", 2430, 175, 100, 100, 2, 3, 125,0,0);
+  lvl1entities[lvl1occ] = alg;
+  lvl1occ+=1;
+  alg = new entity("Algae", 2475, 450, 100, 100, -2, 3, 100,0,0);
+  lvl1entities[lvl1occ] = alg;
+  lvl1occ+=1;
+  alg = new entity("Algae", 2800, 235, 100, 100, 1, 3, 200,0,0);
+  lvl1entities[lvl1occ] = alg;
+  lvl1occ+=1;
+  alg = new entity("Algae", 3150, 300, 100, 100, -2, 3, 200,0,0);
+  lvl1entities[lvl1occ] = alg;
+  lvl1occ+=1;
+  alg = new entity("Algae", 3725, 300, 100, 100, 2, 4, 200,0,0);
+  lvl1entities[lvl1occ] = alg;
+  lvl1occ+=1;
+  alg = new entity("Algae", 3925, 300, 100, 100, -2, 3, 200,0,0);
+  lvl1entities[lvl1occ] = alg;
+  lvl1occ+=1;
+  alg = new entity("Algae", 4125, 280, 100, 100, 2, 4, 200,0,0);
+  lvl1entities[lvl1occ] = alg;
+  lvl1occ+=1;
+  alg = new entity("Algae", 3980, 550, 100, 100, -1, 3, 225,0,0);
+  lvl1entities[lvl1occ] = alg;
+  lvl1occ+=1;
+
+  alg = new entity("Circ", 3000, 120, 100, 100, -2, 3, 100, 3200, 320);
+  lvl1entities[lvl1occ] = alg;
+  lvl1occ+=1;
+  float dX = 200 - 100;
+  float dY = 360 - 160;
+  c1Ang = atan2(dX,dY);
+  c1Rad = dist(3000,320,3200,120);
+  
+  alg = new entity("Algae", 4430, 490, 100, 100, 2, 3, 150,0,0);
+  lvl1entities[lvl1occ] = alg;
+  lvl1occ+=1;
+  alg = new entity("Algae", 4650, 150, 100, 100, 1, 3, 250,0,0);
+  lvl1entities[lvl1occ] = alg;
+  lvl1occ+=1;
+  alg = new entity("Algae", 4850, 350, 100, 100, -1, 3, 250,0,0);
+  lvl1entities[lvl1occ] = alg;
+  lvl1occ+=1;
+  alg = new entity("Algae", 4800, 500, 100, 100, 1, 3, 200,0,0);
+  lvl1entities[lvl1occ] = alg;
+  lvl1occ+=1;
+  alg = new entity("Algae", 5110, 120, 100, 100, -2, 3, 40,0,0);
+  lvl1entities[lvl1occ] = alg;
+  lvl1occ+=1;  
+  alg = new entity("Algae", 5410, 300, 100, 100, 2, 3, 200,0,0);
+  lvl1entities[lvl1occ] = alg;
+  lvl1occ+=1;
+  alg = new entity("Algae", 5850, 525, 100, 100, 1, 3, 200,0,0);
+  lvl1entities[lvl1occ] = alg;
+  lvl1occ+=1;
+  alg = new entity("Algae", 5850, 360, 100, 100, -1, 4, 190,0,0);
+  lvl1entities[lvl1occ] = alg;
+  lvl1occ+=1;  
+  alg = new entity("Algae", 5850, 40, 100, 100, 1, 4, 170,0,0);
+  lvl1entities[lvl1occ] = alg;
+  lvl1occ+=1;  
+  alg = new entity("Algae", 6100, 230, 100, 100, -2, 4, 180,0,0);
+  lvl1entities[lvl1occ] = alg;
+  lvl1occ+=1;  
+  alg = new entity("Algae", 6225, 410, 100, 100, 2, 3, 180,0,0);
+  lvl1entities[lvl1occ] = alg;
+  lvl1occ+=1;  
+  alg = new entity("Algae", 6400, 230, 100, 100, 2, 4, 180,0,0);
+  lvl1entities[lvl1occ] = alg;
+  lvl1occ+=1;  
+  alg = new entity("Algae", 6240, 500, 100, 100, 1, 3, 200,0,0);
+  lvl1entities[lvl1occ] = alg;
+  lvl1occ+=1;  
+  alg = new entity("Algae", 6240, 300, 100, 100, -1, 4, 200,0,0);
+  lvl1entities[lvl1occ] = alg;
+  lvl1occ+=1;  
+  alg = new entity("Algae", 6660, 250, 100, 100, -2, 4, 180,0,0);
+  lvl1entities[lvl1occ] = alg;
+  lvl1occ+=1;  
+  alg = new entity("Algae", 6660, 490, 100, 100, 1, 4, 220,0,0);
+  lvl1entities[lvl1occ] = alg;
+  lvl1occ+=1;  
+  alg = new entity("Algae", 6850, 240, 100, 100, 2, 3, 170,0,0);
+  lvl1entities[lvl1occ] = alg;
+  lvl1occ+=1;  
+
 }
 
 void draw() {

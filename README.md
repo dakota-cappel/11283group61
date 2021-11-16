@@ -1,4 +1,4 @@
-# 11283group61 Frick Covid Bros
+# 11283group61
 CEN3031 Group Project Directory
 
 Member1: Dakota D. Cappel (Scrum Master)
