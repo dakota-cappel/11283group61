@@ -101,7 +101,6 @@ class entity {
   if(what == "Player"){
     if ((type == "Algae" || type == "Circ")&&((c1.playerXRight>=xLeft && c1.playerXRight <= xRight) || (c1.playerXLeft >= xLeft && c1.playerXLeft <= xRight)) && (((c1.playerYBottom>=yTop) && (c1.playerYBottom<=yBottom)) || ((c1.playerYTop>=yTop) && (c1.playerYTop <= yBottom)))) {
       c1.hearts = c1.hearts-1;
-      println("C1 Hearts: ", c1.hearts);
       alive = false;
       return true;
     }
@@ -115,12 +114,14 @@ class entity {
     if(c1.direction == 1){
       if((type == "Algae" || type == "Circ") && (((c1.playerXRight+40)>=xLeft && (c1.playerXRight+40) <= xRight) || ((c1.playerXLeft+90) >= xLeft && (c1.playerXLeft+90) <= xRight)) && (((c1.playerYBottom-42 >= yTop) && (c1.playerYBottom-42<=yBottom)) || ((c1.playerYTop+42>=yTop) && (c1.playerYTop+42 <=yBottom)))){
         alive = false;
+        score+=10;        
       }
     }
     else
     {
       if((type == "Algae" || type == "Circ") && (((c1.playerXLeft-40)>=xLeft && (c1.playerXLeft-40) <= xRight) || ((c1.playerXLeft >= xLeft) && (c1.playerXLeft <= xRight))) && (((c1.playerYBottom-42 >= yTop) && (c1.playerYBottom-42<=yBottom)) || ((c1.playerYTop+42>=yTop) && (c1.playerYTop+42 <=yBottom)))){
       alive = false;
+      score+=10;
       }
     }
     

@@ -16,28 +16,20 @@ void resetLvl1(){
   for(int i = 0; i < lvl1entities.length; i++){
       if(i==lvl1occ)
         break;
-      println("reached1 ", i);
       lvl1entities[i].alive = true;
-      println("reached2");
       lvl1entities[i].xLeft = lvl1entities[i].xLeftHold;
-      println("reached3");
       lvl1entities[i].xRight = lvl1entities[i].xRightHold;
-      println("reached4");
       lvl1entities[i].yTop = lvl1entities[i].yTopHold;
-      println("reached5");
       lvl1entities[i].yBottom = lvl1entities[i].yBottomHold;
-      println("reached6");
       lvl1entities[i].entDir = lvl1entities[i].entDirHold;
-      println("reached7");
       lvl1entities[i].xStart = lvl1entities[i].xStartHold;
-      println("reached8");
       lvl1entities[i].yStart = lvl1entities[i].yStartHold;
-      println("reached9");
       lvl1entities[i].speed = lvl1entities[i].speedHold;
    }
    for(int i = 0; i < Inventory.length; i++){
      Inventory[i] = null;
    }
+   score = 0;
     c1.equippethed = false;
     c1.playerXLeft = 100;
     c1.playerXRight = 150;
@@ -48,6 +40,8 @@ void resetLvl1(){
 }
 
 void displayLevel1() {
+  println("VALS: ", c1.playerXRight - mapVal);
+
   // println("Map Val: " + mapVal);
   stageLength = 7000;
   floorVal = 650;
@@ -89,8 +83,26 @@ void displayLevel1() {
     lvl1entities[i].checkEntityCollision("Player");
   }
   for(int i = 0; i < c1.hearts; i++){
-    image(heart,170+100*i,40);  
+    image(heart,120+100*i,0);  
   }
+  textSize(90);
+  fill(0);
+  text("SCORE: ",660,45);
+  text(score,869,45);
+  if(c1.playerXRight-mapVal >= 7000){
+      textSize(69);
+      if(score >= 250){  
+        fill(0,255,0);
+        text("CONGRATS YOU CLEANED\n THIS WATERWAY, POGGERS!\n\n CLICK TO GO BACK AND\n PLAY AGAIN WOOHOO", width/2, height/2);
+        gg = true;
+      }
+      else{
+        fill(255,00,0);
+        text("NOT ENOUGH POINTS XD", width/2, height/2);
+      }
+  }
+  fill(255,255,255,35);
+  rect(7000+mapVal,0,50,760);
 }
 
 void displayLevel2() {
