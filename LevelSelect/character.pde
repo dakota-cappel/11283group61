@@ -80,6 +80,7 @@ public class character {
     } else {
       fill(0,255,0);
     }
+    println("Px: ", playerXLeft-mapVal, "Ptop: ", playerYTop);
     pushMatrix();
     if(c1.direction == -1){
       scale(-1.0,1.0);
